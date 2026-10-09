@@ -1,0 +1,240 @@
+# Aula 1 (27/07/2026) — Orientações do Professor e Fundamentos da Disciplina
+
+## Orientações iniciais
+
+* A programação deverá ser desenvolvida utilizando o paradigma de orientação a objetos.
+* Os projetos precisam seguir os princípios da arquitetura MVC, organizando o código em partes como Model, Controller, Service e Interface, entre outras que forem necessárias.
+* Todo código deverá possuir documentação explicativa. Trabalhos sem documentação não serão aceitos para validação.
+* A avaliação será realizada por meio de trabalhos e apresentações no quadro, sem a aplicação de provas tradicionais.
+
+## Introdução à Arquitetura de Sistemas
+
+A arquitetura de sistemas define como os computadores são organizados e como ocorre a comunicação entre eles. Foram apresentados dois modelos principais:
+
+**1. Cliente-Servidor**
+
+Nesse formato, um computador solicita informações ou serviços, enquanto outro computador, responsável por atender às solicitações, responde aos pedidos. O modelo de referência OSI possui sete camadas: Aplicação, Apresentação, Sessão, Transporte, Rede, Enlace e Física. Também foi abordada a relação entre o modelo OSI, mais teórico, e o modelo TCP/IP, utilizado na prática.
+
+**2. Ponto a Ponto (P2P)**
+
+Nesse modelo, os computadores podem se comunicar diretamente, sem depender obrigatoriamente de um servidor central. A comunicação utiliza os recursos e protocolos de rede disponíveis, como os relacionados ao modelo TCP/IP.
+
+Entre os principais aspectos que precisam ser considerados na arquitetura de sistemas estão:
+
+* **Tolerância a falhas:** capacidade de continuar funcionando mesmo quando ocorrem problemas.
+* **Escalabilidade:** possibilidade de atender ao aumento de usuários e de demandas.
+* **Segurança:** proteção das informações e dos recursos do sistema.
+* **Manutenção e atualização:** facilidade para corrigir erros e implementar melhorias.
+
+## Comunicação entre computadores
+
+A comunicação pode ser representada pela troca de informações entre dois computadores conectados por portas de comunicação.
+
+* **Envio de dados:** o computador utiliza operações como `send` ou `write` para transmitir bytes, textos ou objetos. Quando um objeto é convertido em uma sequência de bytes para transmissão, ocorre a serialização.
+* **Recebimento de dados:** o computador utiliza operações como `receive` ou `read` para receber as informações. Quando os bytes recebidos são convertidos novamente em um objeto, acontece a desserialização.
+
+## Objetivos da disciplina e utilização de frameworks
+
+Os frameworks auxiliam no desenvolvimento de aplicações por meio de estruturas prontas, incentivando boas práticas de programação, reaproveitamento de código e atualizações frequentes.
+
+Um dos objetivos da disciplina é desenvolver sistemas capazes de permitir a comunicação entre computadores de maneira eficiente, buscando reduzir atrasos e possibilitar que as informações sejam compartilhadas quase em tempo real. A proposta é compreender e implementar esses mecanismos por meio da programação, inclusive desenvolvendo os componentes necessários manualmente.
+
+## Threads e programação concorrente
+
+Threads são unidades de execução que permitem realizar diferentes tarefas dentro de um programa. Elas utilizam recursos como memória e processador e possuem um ciclo de vida, desde sua criação até o encerramento.
+
+Na programação concorrente, várias tarefas podem avançar durante o mesmo intervalo de tempo, alternando o uso do processador. Isso não significa necessariamente que sejam executadas simultaneamente, como ocorre no paralelismo com múltiplos núcleos.
+
+Uma thread pode ser criada por um processo ou por outra thread. Quando existe dependência entre essas execuções, o encerramento de uma pode afetar as demais, conforme a forma como o programa foi desenvolvido e gerenciado.
+
+O gerenciamento de threads envolve sua criação, inicialização, controle da execução, sincronização e encerramento.
+
+Quando diferentes threads acessam uma mesma região de memória, podem ocorrer condições de corrida (*race conditions*). Por isso, é necessário utilizar mecanismos de sincronização e proteger as seções críticas, evitando conflitos na manipulação dos dados.
+
+---
+
+# Aula 2 (31/07/2026) — Revisão de Sistemas Paralelos e Distribuídos
+
+## Sistemas Paralelos
+
+Sistemas paralelos utilizam recursos computacionais para executar tarefas de maneira simultânea ou coordenada, buscando melhorar o desempenho das aplicações.
+
+Suas principais características incluem:
+
+* **Padronização:** geralmente utilizam máquinas com hardware, sistemas operacionais e ferramentas de programação semelhantes.
+* **Integração física:** os computadores podem estar fortemente conectados, formando uma estrutura de processamento integrado.
+* **Comunicação:** a troca de informações ocorre por meio de uma rede, utilizando endereços, portas e protocolos de comunicação.
+* **Organização:** um exemplo comum é o cluster computacional, no qual várias máquinas trabalham em conjunto.
+
+Os sistemas paralelos também precisam considerar segurança, tolerância a falhas, manutenção e atualização dos componentes.
+
+**Objetivo principal:** combinar recursos de processamento e memória para executar tarefas mais rapidamente ou lidar com grandes volumes de trabalho.
+
+## Sistemas Distribuídos
+
+Os sistemas distribuídos são formados por computadores independentes que cooperam por meio de uma rede. Diferentemente de uma estrutura totalmente padronizada, podem utilizar equipamentos, sistemas operacionais e linguagens diferentes, sendo considerados heterogêneos e fracamente acoplados.
+
+As arquiteturas mais comuns são:
+
+* **Cliente-Servidor:** existe um servidor que fornece serviços aos clientes.
+* **Ponto a Ponto (P2P):** os participantes podem atuar tanto como solicitantes quanto como fornecedores de recursos.
+* **Híbrida:** combina características dos modelos anteriores.
+
+Os principais desafios dos sistemas distribuídos envolvem a continuidade do serviço diante de falhas, o crescimento da infraestrutura, a proteção dos dados e a coordenação das operações realizadas em diferentes computadores.
+
+## Comunicação e utilização de threads
+
+Os sockets possibilitam a troca de dados entre aplicações conectadas por uma rede. Algumas operações de leitura e escrita são bloqueantes, ou seja, a execução pode ficar aguardando a chegada ou o envio de informações.
+
+As threads podem ajudar a lidar com essas esperas, permitindo que outras tarefas sejam executadas enquanto uma operação de comunicação permanece bloqueada.
+
+Em relação ao compartilhamento de memória, foram destacados dois cenários:
+
+* **Threads com memória compartilhada:** acessam dados em comum e precisam de mecanismos de sincronização para evitar condições de corrida. Em Java, podem ser utilizadas técnicas com `Runnable`, juntamente com mecanismos de controle de acesso aos recursos compartilhados.
+* **Execuções com dados independentes:** cada tarefa trabalha com seus próprios dados, reduzindo a necessidade de sincronização entre elas. Em Java, a classe `Thread` pode ser utilizada para criar essas execuções.
+
+---
+
+# Aula 3 (03/08/2026) — Ausência na Aula
+
+Não foi possível comparecer à aula por motivo pessoal.
+
+Nesse encontro, o professor começou a demonstrar, por meio de exemplos práticos em Python, os conceitos de comunicação e execução concorrente que haviam sido apresentados anteriormente.
+
+---
+
+# Aula 4 (07/08/2026) — Continuação de Threads em Python
+
+## Arquitetura Cliente-Servidor
+
+O modelo cliente-servidor centraliza determinados serviços em um servidor responsável por receber solicitações e enviar respostas aos computadores clientes.
+
+Essa estrutura facilita a administração, a organização e o controle das operações. Entretanto, quando o servidor principal apresenta uma falha, os serviços que dependem dele podem ficar indisponíveis.
+
+## Arquitetura Ponto a Ponto (P2P)
+
+Na arquitetura P2P, não existe necessariamente um servidor central responsável por toda a comunicação. Os próprios computadores da rede podem compartilhar informações e recursos diretamente.
+
+Um exemplo desse funcionamento é o BitTorrent, no qual os participantes podem tanto receber quanto disponibilizar partes de arquivos.
+
+Entre as vantagens desse modelo estão a distribuição das responsabilidades, a possibilidade de expansão da rede e a menor dependência de um único computador. Assim, a saída de um participante não significa necessariamente que toda a rede deixará de funcionar.
+
+## Comunicação em sistemas distribuídos
+
+A comunicação é o mecanismo que permite aos computadores trocar mensagens e colaborar para executar determinadas tarefas.
+
+Esse processo enfrenta desafios como atrasos na transmissão, perda de mensagens, falhas de conexão e indisponibilidade de participantes. Por isso, a comunicação precisa ser planejada para que o sistema consiga lidar com essas situações.
+
+## Sincronização entre máquinas
+
+A sincronização organiza a execução das tarefas e ajuda a impedir que operações conflitantes comprometam os dados.
+
+Um exemplo é quando dois computadores tentam modificar o mesmo registro ao mesmo tempo. Sem controle adequado, o resultado pode ser inconsistente.
+
+Como os computadores distribuídos não possuem necessariamente relógios perfeitamente sincronizados, são utilizados mecanismos de coordenação, relógios lógicos e algoritmos de consenso, como o Raft, para ajudar a manter a consistência das operações.
+
+---
+
+# Aula 7 (17/08/2026) — Primeiro Trabalho Prático
+
+## Exercício 1: Caixas de Evento — Compartilhamento de Memória
+
+A atividade consiste em simular cinco threads responsáveis por registrar vendas em uma variável central chamada `saldo_central`.
+
+Cada venda possui o valor de R$ 10,00, e o objetivo é contabilizar mil vendas por thread, totalizando cinco mil vendas entre as cinco threads.
+
+Como todas as threads atualizam a mesma variável, é necessário utilizar mecanismos de sincronização para impedir condições de corrida e garantir que os valores sejam somados corretamente.
+
+**Resultado esperado:** R$ 50.000,00.
+
+## Exercício 2: Relatório de Filiais — Sem Compartilhamento de Memória
+
+Nesse exercício, quatro threads representam quatro filiais diferentes. Cada uma recebe uma lista própria de vendas e calcula seu total individualmente.
+
+Como as listas são independentes, cada thread pode realizar sua soma sem modificar diretamente os dados das demais filiais.
+
+Ao final, a thread principal utiliza o método `join()` para aguardar a conclusão de todas as threads. Depois que todas terminarem, os resultados individuais são reunidos para calcular o total geral das vendas.
+
+**Resultado esperado:** soma dos valores calculados pelas quatro filiais.
+
+---
+
+# Aula 8 (24/08/2026) — Preparação para a Prova
+
+Foi realizada uma revisão dos assuntos trabalhados durante as aulas anteriores, com o propósito de retomar os conceitos principais e esclarecer possíveis dúvidas antes da avaliação teórica prevista para sexta-feira.
+
+---
+
+# Aula 9 (28/08/2026) — Primeira Prova
+
+Foi realizada a primeira avaliação teórica da disciplina, abordando os conteúdos estudados até aquele momento.
+
+---
+
+# Aula 10 (31/08/2026) — Correção da Avaliação e Introdução aos Sockets
+
+Durante a aula, foram discutidas as questões da prova e esclarecidas as respostas esperadas pelo professor.
+
+A questão que apresentou maior dificuldade foi a última, relacionada aos mecanismos necessários para garantir a exclusão mútua. Na discussão, foram mencionados conceitos como sincronização, locks e outros recursos utilizados para controlar o acesso simultâneo a regiões críticas do código.
+
+Após a análise da avaliação, iniciou-se o estudo dos sockets, que permitem estabelecer a comunicação entre programas por meio de uma rede.
+
+---
+
+# Aula 11 (04/09/2026) — Introdução ao ServerSocket
+
+O conteúdo da aula foi voltado ao funcionamento do `ServerSocket` e à comunicação entre servidor e cliente em uma estrutura inicial de um para um (1:1).
+
+Também foi apresentada a proposta de desenvolver um pequeno sistema de conversa, semelhante a um chat, utilizando o terminal como interface para enviar e receber mensagens entre os participantes.
+
+---
+
+# Aula 14 (25/09/2026) — Comunicação UDP e Geração de Tokens
+
+## Comunicação utilizando UDP
+
+O UDP é um protocolo de transporte que permite enviar e receber dados pela rede. Assim como o TCP, pode ser utilizado para transmitir informações entre aplicações, inclusive dados que representam textos e objetos serializados.
+
+Sua principal diferença em relação ao TCP é que ele não estabelece previamente uma conexão entre os participantes. Isso reduz certas etapas da comunicação, mas não garante que os pacotes sejam entregues, cheguem na ordem correta ou sejam recebidos apenas uma vez.
+
+## Funcionamento de um autenticador semelhante ao Google Authenticator
+
+Foi apresentado um mecanismo de autenticação baseado em códigos temporários, semelhantes aos utilizados pelo Google Authenticator.
+
+Nesse modelo, o servidor utiliza o tempo como referência para gerar ou validar tokens que permanecem válidos por um período limitado. A cada intervalo determinado, um novo código passa a ser utilizado.
+
+Quando um usuário solicita sua identificação temporária, o sistema retorna o token correspondente ao período atual. A renovação periódica dos códigos contribui para a segurança, pois limita o tempo durante o qual cada token pode ser utilizado.
+
+## Proposta de exercício: Sistema de cadastro e geração de tokens via UDP
+
+A atividade consiste em implementar um servidor que ofereça dois serviços principais.
+
+**1. Cadastro de usuários**
+
+O sistema deverá permitir registrar usuários e armazenar as seguintes informações:
+
+* Nome do usuário;
+* Endereço de e-mail;
+* Token atual.
+
+**2. Geração e consulta de tokens por UDP**
+
+O servidor deverá atualizar o token de cada usuário a cada 60 segundos. Quando um usuário fizer uma solicitação, o sistema deverá responder com o código atual correspondente àquele usuário.
+
+O token poderá ser criado utilizando um número aleatório, sem a necessidade de utilizar o método `hashCode()`.
+
+**Exemplo de funcionamento:**
+
+Cadastro inicial:
+
+* Nome: João
+* E-mail: joao...
+* Token atual: 483921
+
+Depois de 60 segundos, o token será renovado:
+
+* Nome: João
+* E-mail: joao...
+* Novo token: 726154
+
+Dessa forma, o exercício reúne conceitos de cadastro de usuários, comunicação por sockets UDP, controle de tempo e atualização periódica de informações no servidor.
